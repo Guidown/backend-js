@@ -10,5 +10,10 @@ router.get('/:id', (req, res) => {
     res.send(`This is the product with id ${productId}`);
 });
 
+router.get('/test', (req, res) => {
+  const productId = req.params.id;
+  res.send(`test ${productId}`);
+});
+
 
 export default router;
