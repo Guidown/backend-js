@@ -1,7 +1,7 @@
 import { readFile, readFileSync, writeFileSync } from 'fs';
 
 
-class ProductManager {
+export class ProductManager {
   constructor(path) {
     this.products = [];
     this.path = path;
@@ -85,12 +85,14 @@ class ProductManager {
   }
 
   deleteProduct(id) {
-    const productIndex = this.products.findIndex((p) => p.id === id);
-    if (productIndex === -1) {
+    console.log(id)
+    let products = this.leerProductos();
+    const productIndex = products.findIndex((p) => p.id == id);
+    if (productIndex == -1) {
       return console.log('Producto no encontrado');
     }
 
-    this.products.splice(productIndex, 1);
+    products.splice(productIndex, 1);
     this.guardarProductos();
 
     console.log('Producto eliminado');
@@ -99,7 +101,7 @@ class ProductManager {
   leerProductos() {
     try {
       const data = readFileSync(this.path, 'utf-8');
-      if (data === '') {
+      if (data == '') {
         console.log(data);
         return [];
       }
@@ -116,45 +118,45 @@ class ProductManager {
       writeFileSync(this.path, data, 'utf-8');
       console.log('Productos guardados correctamente');
     } catch (err) {
-      console.log('Error al guardar los productos');
+      console.log('Error al guardar los productos', err);
     }
   }
 }
 
-const manager = new ProductManager('../../src/data.json');
+const manager = new ProductManager('./data.json');
 
-manager.addProduct({
-  title: "Zapatillas",
-  description: "Zapatillas deportivas",
-  price: 59.99,
-  thumbnail: "img/zapatillas.jpg",
-  code: "5678",
-  stock: 10,
-});
+// manager.addProduct({
+//   title: "Zapatillas",
+//   description: "Zapatillas deportivas",
+//   price: 59.99,
+//   thumbnail: "img/zapatillas.jpg",
+//   code: "5678",
+//   stock: 10,
+// });
 
-manager.getProducts()
-  .then((products) => {
-    console.log(products);
-  })
-  .catch((err) => {
-    console.error('Error al obtener los productos:', err);
-  });
+// manager.getProducts()
+//   .then((products) => {
+//     console.log(products);
+//   })
+//   .catch((err) => {
+//     console.error('Error al obtener los productos:', err);
+//   });
 
-manager.getProductById(1)
-  .then((product) => {
-    console.log(product);
-  })
-  .catch((err) => {
-    console.error('Error al obtener el producto:', err);
-  });
+// manager.getProductById(1)
+//   .then((product) => {
+//     console.log(product);
+//   })
+//   .catch((err) => {
+//     console.error('Error al obtener el producto:', err);
+//   });
 
-manager.updateProduct(1, {
-  title: "Camiseta",
-  description: "Camiseta de algodón",
-  price: 19.99,
-  thumbnail: "img/camiseta.jpg",
-  code: "5678",
-  stock: 5,
-});
+// manager.updateProduct(1, {
+//   title: "Camiseta",
+//   description: "Camiseta de algodón",
+//   price: 19.99,
+//   thumbnail: "img/camiseta.jpg",
+//   code: "5678",
+//   stock: 5,
+// });
 
-manager.deleteProduct(1);
+// manager.deleteProduct(1);
