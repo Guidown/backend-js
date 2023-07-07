@@ -1,6 +1,5 @@
 import { readFile, readFileSync, writeFileSync } from 'fs';
 
-
 export class ProductManager {
   constructor(path) {
     this.products = [];
@@ -16,7 +15,8 @@ export class ProductManager {
       !product.code ||
       !product.stock
     ) {
-      return console.log("Error: Todos los campos son obligatorios.");
+      console.log("Error: Todos los campos son obligatorios.");
+      return 
     }
 
     const existingProduct = this.products.find((p) => p.code === product.code);
@@ -125,15 +125,16 @@ export class ProductManager {
 
 const manager = new ProductManager('./data.json');
 
-// manager.addProduct({
-//   title: "Zapatillas",
-//   description: "Zapatillas deportivas",
-//   price: 59.99,
-//   thumbnail: "img/zapatillas.jpg",
-//   code: "5678",
-//   stock: 10,
-// });
-
+/*
+ manager.addProduct({
+   title: "Zapatillas",
+   description: "Zapatillas deportivas",
+   price: 59.99,
+   thumbnail: "img/zapatillas.jpg",
+   code: "5678",
+   stock: 10,
+ });
+*/
 // manager.getProducts()
 //   .then((products) => {
 //     console.log(products);

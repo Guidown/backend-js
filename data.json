@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "title": "Zapatillas",
+    "description": "Zapatillas deportivas",
+    "price": 59.99,
+    "thumbnail": "img/zapatillas.jpg",
+    "code": "5678",
+    "stock": 10,
+    "id": 1
+  }
+]

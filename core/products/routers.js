@@ -1,17 +1,26 @@
 import { Router } from "express";
-import { ProductManager } from "./app.js";
+//import { ProductManager } from "./app.js";
+import { ProductManager } from "../../PRUEBAS.js";
 import bodyParser from "body-parser";
 const router = Router();
 router.use(bodyParser.json());
 
-const manager = new ProductManager("../../data.json");
+const manager = new ProductManager("./data.json"); 
+
+
+//const manager = new ProductManager("./data.json"); 
 
 router.get("/", async (req, res) => {
   res.send(await manager.getProducts());
 });
 
 router.post("/", async (req, res) => {
-  res.send(await manager.addProduct(req.body));
+  try{
+ res.send(await manager.addProduct(req.body));
+
+}catch(error){
+  console.log(error)
+}
 });
 
 router.get("/:id", async (req, res) => {
